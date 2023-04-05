@@ -1,0 +1,39 @@
+# Необходимо:
+# 1. Создать класс “Student” который содержит следующие параметры
+# (full_name - имя студента, group_number - номер группы и progress - список полученных оценок);
+# 2. Осуществить список, который сортируется по имени, затем выводятся
+# студенты, имеющие неудовлетворительные оценки.
+
+class Student:
+    def __init__(self, full_name, group_number, progress):
+        self.full_name = full_name
+        self.group_number = group_number
+        self.progress = progress
+    def __str__(self):
+        return f'Имя: {self.full_name}, Группа: {self.group_number}, Оценки: {self.progress}'
+
+student_list = []
+student_dict = {}
+num = int(input('Введите колл-во студентов: '))
+for i in range(num):
+    name = input('Введите имя: ')
+    group = input('Введите группу: ')
+    num_bal = int(input('Введете кол-во оценок'))
+    list_bal = []
+    for j in range(num_bal):
+        bal = int(input('Введите оценку: '))
+        list_bal.append(bal)
+    student = Student(name, group, list_bal)
+    student_list.append(student.full_name)
+    student_dict[student.full_name] = list_bal
+
+
+student_list.sort()
+
+for i in student_list:
+    print(i)
+
+for key, value in student_dict.items():
+    for i in value:
+        if i < 3:
+            print(f'{key} имеет неудовлетворительные оценки')
